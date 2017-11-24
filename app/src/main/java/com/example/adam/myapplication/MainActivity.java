@@ -11,6 +11,7 @@ package com.example.adam.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
@@ -27,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         setContentView(webview);
-        webview.setWebViewClient(new WebViewClient());
+//        webview.setWebChromeClient(new WebChromeClient());
+        webview.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
         webview.loadUrl("http://www.what-the-feed.com");
     }
 
